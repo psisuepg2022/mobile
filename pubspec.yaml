@@ -60,33 +60,33 @@ flutter:
   fonts:
     - family: Poppins
       fonts:
-        - asset: assets/fonts/Poppins-Black.ttf
+        - asset: fonts/Poppins-Black.ttf
           weight: 900
-        - asset: assets/fonts/Poppins-BlackItalic.ttf
-        - asset: assets/fonts/Poppins-Bold.ttf
+        - asset: fonts/Poppins-BlackItalic.ttf
+        - asset: fonts/Poppins-Bold.ttf
           weight: 700
-        - asset: assets/fonts/Poppins-BoldItalic.ttf
-        - asset: assets/fonts/Poppins-ExtraBold.ttf
+        - asset: fonts/Poppins-BoldItalic.ttf
+        - asset: fonts/Poppins-ExtraBold.ttf
           weight: 800
-        - asset: assets/fonts/Poppins-ExtraBoldItalic.ttf
-        - asset: assets/fonts/Poppins-ExtraLight.ttf
+        - asset: fonts/Poppins-ExtraBoldItalic.ttf
+        - asset: fonts/Poppins-ExtraLight.ttf
           weight: 200
-        - asset: assets/fonts/Poppins-ExtraLightItalic.ttf
-        - asset: assets/fonts/Poppins-Italic.ttf
-        - asset: assets/fonts/Poppins-Light.ttf
+        - asset: fonts/Poppins-ExtraLightItalic.ttf
+        - asset: fonts/Poppins-Italic.ttf
+        - asset: fonts/Poppins-Light.ttf
           weight: 300
-        - asset: assets/fonts/Poppins-LightItalic.ttf
-        - asset: assets/fonts/Poppins-Medium.ttf
+        - asset: fonts/Poppins-LightItalic.ttf
+        - asset: fonts/Poppins-Medium.ttf
           weight: 500
-        - asset: assets/fonts/Poppins-MediumItalic.ttf
-        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: fonts/Poppins-MediumItalic.ttf
+        - asset: fonts/Poppins-Regular.ttf
           weight: 400
-        - asset: assets/fonts/Poppins-SemiBold.ttf
+        - asset: fonts/Poppins-SemiBold.ttf
           weight: 600
-        - asset: assets/fonts/Poppins-SemiBoldItalic.ttf
-        - asset: assets/fonts/Poppins-Thin.ttf
+        - asset: fonts/Poppins-SemiBoldItalic.ttf
+        - asset: fonts/Poppins-Thin.ttf
           weight: 100
-        - asset: assets/fonts/Poppins-ThinItalic.ttf
+        - asset: fonts/Poppins-ThinItalic.ttf
   uses-material-design: true
   assets: 
     - assets/images/
