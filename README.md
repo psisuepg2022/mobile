@@ -1,16 +1,17 @@
-# mobile
+# ***P***atient & ***S***cheduling ***I***nformation ***S***ystem
 
-A new Flutter project.
+# Sobre
 
-## Getting Started
+Engenharia de Computação, UEPG - 7º período
 
-This project is a starting point for a Flutter application.
+Projeto adicional com relação ao projeto desenvolvido para a disciplina Projeto de Software
 
-A few resources to get you started if this is your first Flutter project:
+[Marcos Renan Krul](https://github.com/MarcosKrul) - [Renato Cristiano Ruppel](https://github.com/HERuppel)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+# Setup
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* Clonar repositório
+
+```
+  git clone https://github.com/psisuepg2022/client.git .
+```
