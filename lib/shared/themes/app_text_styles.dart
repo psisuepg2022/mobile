@@ -7,4 +7,9 @@ class TextStyles {
     fontWeight: FontWeight.w200,
     color: const Color(0xFFFFFFFF),
   );
+  static final welcome = GoogleFonts.poppins(
+    fontSize: 18,
+    fontWeight: FontWeight.w400,
+    color: const Color(0xFFFFFFFF),
+  );
 }
