@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile/modules/home/home_page.dart';
+import 'package:mobile/modules/login/login_page.dart';
 import 'package:mobile/shared/themes/app_colors.dart';
 
 import 'modules/splash/splash_page.dart';
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
         initialRoute: "/splash",
         routes: {
           "/splash": (context) => const SplashPage(),
-          "/home": (context) => const HomePage()
+          "/home": (context) => const HomePage(),
+          "/login": (context) => const LoginPage()
         });
   }
 }
