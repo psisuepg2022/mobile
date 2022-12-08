@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.green,
             primaryColor: AppColors.primary,
             textTheme: GoogleFonts.poppinsTextTheme()),
-        initialRoute: "/home",
+        initialRoute: "/splash",
         routes: {
           "/splash": (context) => const SplashPage(),
           "/home": (context) => const HomePage()

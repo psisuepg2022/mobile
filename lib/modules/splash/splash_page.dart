@@ -15,7 +15,20 @@ class SplashPage extends StatelessWidget {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: <Color>[AppColors.secondary, AppColors.primary])),
-          child: Center(child: Text('PSIS', style: TextStyles.titleBig)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/images/PSIS-Logo-Transparente.png',
+                height: 100,
+              ),
+              Center(child: Text('PSIS', style: TextStyles.titleBig)),
+              const CircularProgressIndicator(
+                color: Colors.white,
+              )
+            ],
+          ),
         ),
       ),
     );
