@@ -36,6 +36,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  google_fonts: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -57,40 +58,10 @@ flutter:
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
-  fonts:
-    - family: Poppins
-      fonts:
-        - asset: fonts/Poppins-Black.ttf
-          weight: 900
-        - asset: fonts/Poppins-BlackItalic.ttf
-        - asset: fonts/Poppins-Bold.ttf
-          weight: 700
-        - asset: fonts/Poppins-BoldItalic.ttf
-        - asset: fonts/Poppins-ExtraBold.ttf
-          weight: 800
-        - asset: fonts/Poppins-ExtraBoldItalic.ttf
-        - asset: fonts/Poppins-ExtraLight.ttf
-          weight: 200
-        - asset: fonts/Poppins-ExtraLightItalic.ttf
-        - asset: fonts/Poppins-Italic.ttf
-        - asset: fonts/Poppins-Light.ttf
-          weight: 300
-        - asset: fonts/Poppins-LightItalic.ttf
-        - asset: fonts/Poppins-Medium.ttf
-          weight: 500
-        - asset: fonts/Poppins-MediumItalic.ttf
-        - asset: fonts/Poppins-Regular.ttf
-          weight: 400
-        - asset: fonts/Poppins-SemiBold.ttf
-          weight: 600
-        - asset: fonts/Poppins-SemiBoldItalic.ttf
-        - asset: fonts/Poppins-Thin.ttf
-          weight: 100
-        - asset: fonts/Poppins-ThinItalic.ttf
+
   uses-material-design: true
   assets: 
     - assets/images/
-
 
   # To add assets to your application, add an assets section, like this:
   # assets:
