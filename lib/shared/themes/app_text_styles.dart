@@ -6,12 +6,12 @@ class TextStyles {
   static final titleBig = GoogleFonts.poppins(
     fontSize: 80,
     fontWeight: FontWeight.w200,
-    color: const Color(0xFFFFFFFF),
+    color: Colors.white,
   );
   static final welcome = GoogleFonts.poppins(
     fontSize: 18,
     fontWeight: FontWeight.w400,
-    color: const Color(0xFFFFFFFF),
+    color: Colors.white,
   );
   static final input = GoogleFonts.poppins(
     fontSize: 15,
@@ -23,4 +23,6 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.primary,
   );
+  static final whiteLabel = GoogleFonts.poppins(
+      fontSize: 15, fontWeight: FontWeight.w400, color: Colors.white);
 }

@@ -1,8 +1,8 @@
 import 'package:animated_card/animated_card.dart';
 import 'package:flutter/material.dart';
 
-import '../themes/app_colors.dart';
-import '../themes/app_text_styles.dart';
+import '../../themes/app_colors.dart';
+import '../../themes/app_text_styles.dart';
 
 class TextInputWidget extends StatelessWidget {
   final String label;
@@ -26,7 +26,7 @@ class TextInputWidget extends StatelessWidget {
     return AnimatedCard(
       direction: AnimatedCardDirection.left,
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 16, top: 16),
+        padding: const EdgeInsets.only(bottom: 8, top: 16),
         child: Column(
           children: [
             TextFormField(
@@ -43,26 +43,12 @@ class TextInputWidget extends StatelessWidget {
                   contentPadding: const EdgeInsets.symmetric(horizontal: 10),
                   labelText: label,
                   labelStyle: TextStyles.input,
-                  icon: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: icon != null
-                        ? [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 18),
-                              child: Icon(
-                                icon,
-                                color: AppColors.primary,
-                              ),
-                            ),
-                            Container(
-                              width: 1,
-                              height: 48,
-                              color: AppColors.primary,
-                            )
-                          ]
-                        : [],
-                  ),
+                  prefixIcon: icon != null
+                      ? Icon(
+                          icon,
+                          color: AppColors.primary,
+                        )
+                      : null,
                   enabledBorder: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(2)),
                       borderSide:

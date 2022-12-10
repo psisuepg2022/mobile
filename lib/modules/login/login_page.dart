@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/shared/widgets/text_input.dart';
+import 'package:mobile/shared/widgets/label_button/label_button.dart';
+import 'package:mobile/shared/widgets/text_input/text_input.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -35,6 +36,13 @@ class _LoginPageState extends State<LoginPage> {
                       onChanged: (value) {
                         print(value);
                       }),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  LabelButtonWidget(
+                    label: 'ENTRAR',
+                    onPressed: () {},
+                  )
                 ],
               ),
             )
