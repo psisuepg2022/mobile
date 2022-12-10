@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/shared/widgets/dropdown_menu/dropdown_menu.dart';
 import 'package:mobile/shared/widgets/label_button/label_button.dart';
 import 'package:mobile/shared/widgets/text_input/text_input.dart';
 
@@ -26,12 +27,17 @@ class _LoginPageState extends State<LoginPage> {
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Column(
                 children: [
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const DropdownMenuWidget(label: 'Clínica'),
                   TextInputWidget(
                       label: "Usuário",
                       onChanged: (value) {
                         print(value);
                       }),
                   TextInputWidget(
+                      passwordType: true,
                       label: "Senha",
                       onChanged: (value) {
                         print(value);
