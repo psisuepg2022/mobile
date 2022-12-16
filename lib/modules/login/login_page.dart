@@ -1,3 +1,4 @@
+import 'package:animated_card/animated_card.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/widgets/dropdown_menu/dropdown_menu.dart';
 import 'package:mobile/shared/widgets/label_button/label_button.dart';
@@ -45,10 +46,12 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: 20,
                   ),
-                  LabelButtonWidget(
-                    label: 'ENTRAR',
-                    onPressed: () {},
-                  )
+                  AnimatedCard(
+                      direction: AnimatedCardDirection.left,
+                      child: LabelButtonWidget(
+                        label: 'ENTRAR',
+                        onPressed: () {},
+                      ))
                 ],
               ),
             )
