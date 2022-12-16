@@ -13,5 +13,5 @@ Projeto adicional com relação ao projeto desenvolvido para a disciplina Projet
 * Clonar repositório
 
 ```
-  git clone https://github.com/psisuepg2022/client.git .
+  git clone https://github.com/psisuepg2022/mobile.git .
 ```
