@@ -18,11 +18,13 @@ class _SplashPageState extends State<SplashPage> {
 
   Future<void> getClinics() async {
     try {
-      final res = await splashController.fetchClinics();
-
-      setState(() {
-        clinics = res.content;
-      });
+      await splashController.fetchClinics().then((value) => {
+            setState(() {
+              clinics = value.content;
+            }),
+            Navigator.of(context)
+                .pushReplacementNamed("/login", arguments: value.content),
+          });
     } catch (e) {
       print(e);
     } finally {
@@ -40,10 +42,6 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(clinics);
-    if (loading) {
-      return const Scaffold(body: Text('OLAAA'));
-    }
     return SafeArea(
       child: Material(
         child: Container(

@@ -4,12 +4,12 @@ import 'package:mobile/shared/themes/app_colors.dart';
 
 class DropdownMenuWidget extends StatelessWidget {
   final String label;
-  const DropdownMenuWidget({super.key, required this.label});
+  final List<String> options;
+  const DropdownMenuWidget(
+      {super.key, required this.label, required this.options});
 
   @override
   Widget build(BuildContext context) {
-    const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
-
     return AnimatedCard(
       direction: AnimatedCardDirection.left,
       child: Padding(
@@ -18,7 +18,7 @@ class DropdownMenuWidget extends StatelessWidget {
             width: double.maxFinite,
             height: 50,
             child: DropdownButtonFormField<String>(
-                items: list.map<DropdownMenuItem<String>>((String value) {
+                items: options.map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(value),

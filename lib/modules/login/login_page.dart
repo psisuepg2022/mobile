@@ -1,5 +1,6 @@
 import 'package:animated_card/animated_card.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/shared/models/Clinic/clinic_list.dart';
 import 'package:mobile/shared/widgets/dropdown_menu/dropdown_menu.dart';
 import 'package:mobile/shared/widgets/label_button/label_button.dart';
 import 'package:mobile/shared/widgets/text_input/text_input.dart';
@@ -14,6 +15,11 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
+    ClinicListModel clinics =
+        ModalRoute.of(context)!.settings.arguments as ClinicListModel;
+
+    List<String> clinicsName = [...clinics.items.map((e) => e.name)];
+
     return Scaffold(
         body: SafeArea(
       child: Column(
@@ -31,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: 20,
                   ),
-                  const DropdownMenuWidget(label: 'Clínica'),
+                  DropdownMenuWidget(label: 'Clínica', options: clinicsName),
                   TextInputWidget(
                       label: "Usuário",
                       onChanged: (value) {
