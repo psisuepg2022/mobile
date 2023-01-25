@@ -1,6 +1,7 @@
 import 'package:animated_card/animated_card.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/shared/models/Clinic/clinic_list.dart';
+import 'package:mobile/shared/models/Clinic/clinic_options.dart';
 import 'package:mobile/shared/widgets/dropdown_menu/dropdown_menu.dart';
 import 'package:mobile/shared/widgets/label_button/label_button.dart';
 import 'package:mobile/shared/widgets/text_input/text_input.dart';
@@ -18,7 +19,13 @@ class _LoginPageState extends State<LoginPage> {
     ClinicListModel clinics =
         ModalRoute.of(context)!.settings.arguments as ClinicListModel;
 
-    List<String> clinicsName = [...clinics.items.map((e) => e.name)];
+    List<ClinicOptions> clinicOptions = [
+      ...clinics.items.map((e) {
+        return ClinicOptions(name: e.name, value: e.code);
+      })
+    ];
+
+    print(clinicOptions);
 
     return Scaffold(
         body: SafeArea(
@@ -37,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: 20,
                   ),
-                  DropdownMenuWidget(label: 'Clínica', options: clinicsName),
+                  DropdownMenuWidget(label: 'Clínica', options: clinicOptions),
                   TextInputWidget(
                       label: "Usuário",
                       onChanged: (value) {

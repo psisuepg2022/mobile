@@ -1,10 +1,11 @@
 import 'package:animated_card/animated_card.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/shared/models/Clinic/clinic_options.dart';
 import 'package:mobile/shared/themes/app_colors.dart';
 
 class DropdownMenuWidget extends StatelessWidget {
   final String label;
-  final List<String> options;
+  final List<ClinicOptions> options;
   const DropdownMenuWidget(
       {super.key, required this.label, required this.options});
 
@@ -18,10 +19,11 @@ class DropdownMenuWidget extends StatelessWidget {
             width: double.maxFinite,
             height: 50,
             child: DropdownButtonFormField<String>(
-                items: options.map<DropdownMenuItem<String>>((String value) {
+                items: options
+                    .map<DropdownMenuItem<String>>((ClinicOptions option) {
                   return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
+                    value: "${option.value}",
+                    child: Text(option.name),
                   );
                 }).toList(),
                 isExpanded: true,
