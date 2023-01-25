@@ -6,9 +6,14 @@ import '../../themes/app_text_styles.dart';
 class LabelButtonWidget extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
+  final bool? onLoading;
   final TextStyle? style;
   const LabelButtonWidget(
-      {super.key, required this.label, required this.onPressed, this.style});
+      {super.key,
+      required this.label,
+      required this.onPressed,
+      this.style,
+      this.onLoading});
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +24,26 @@ class LabelButtonWidget extends StatelessWidget {
         color: AppColors.primary,
       ),
       width: double.maxFinite,
-      child: TextButton(
-          onPressed: onPressed,
-          child: Text(
-            label,
-            style: style ?? TextStyles.whiteLabel,
-          )),
+      child: onLoading!
+          ? Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                SizedBox(
+                  height: 20,
+                  width: 20,
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                    strokeWidth: 2,
+                  ),
+                )
+              ],
+            )
+          : TextButton(
+              onPressed: onPressed,
+              child: Text(
+                label,
+                style: style ?? TextStyles.whiteLabel,
+              )),
     );
   }
 }

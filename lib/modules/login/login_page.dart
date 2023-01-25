@@ -1,5 +1,6 @@
 import 'package:animated_card/animated_card.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/modules/login/login_controller.dart';
 import 'package:mobile/shared/models/Clinic/clinic_list.dart';
 import 'package:mobile/shared/models/Clinic/clinic_options.dart';
 import 'package:mobile/shared/widgets/dropdown_menu/dropdown_menu.dart';
@@ -14,6 +15,28 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final controller = LoginController();
+  bool loading = false;
+
+  Future<void> handleSignIn() async {
+    try {
+      setState(() {
+        loading = true;
+      });
+      await controller.signIn().then((value) => {
+            print(value)
+            // Navigator.of(context)
+            //     .pushReplacementNamed("/login", arguments: value.content),
+          });
+    } catch (e) {
+      print(e);
+    } finally {
+      setState(() {
+        loading = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     ClinicListModel clinics =
@@ -24,8 +47,6 @@ class _LoginPageState extends State<LoginPage> {
         return ClinicOptions(name: e.name, value: e.code);
       })
     ];
-
-    print(clinicOptions);
 
     return Scaffold(
         body: SafeArea(
@@ -44,17 +65,23 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: 20,
                   ),
-                  DropdownMenuWidget(label: 'Clínica', options: clinicOptions),
+                  DropdownMenuWidget(
+                    label: 'Clínica',
+                    options: clinicOptions,
+                    onChanged: (value) {
+                      controller.onChange(accessCode: "$value");
+                    },
+                  ),
                   TextInputWidget(
                       label: "Usuário",
                       onChanged: (value) {
-                        print(value);
+                        controller.onChange(userName: value);
                       }),
                   TextInputWidget(
                       passwordType: true,
                       label: "Senha",
                       onChanged: (value) {
-                        print(value);
+                        controller.onChange(password: value);
                       }),
                   const SizedBox(
                     height: 20,
@@ -63,7 +90,10 @@ class _LoginPageState extends State<LoginPage> {
                       direction: AnimatedCardDirection.left,
                       child: LabelButtonWidget(
                         label: 'ENTRAR',
-                        onPressed: () {},
+                        onLoading: loading,
+                        onPressed: () {
+                          handleSignIn();
+                        },
                       ))
                 ],
               ),

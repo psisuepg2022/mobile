@@ -6,8 +6,12 @@ import 'package:mobile/shared/themes/app_colors.dart';
 class DropdownMenuWidget extends StatelessWidget {
   final String label;
   final List<ClinicOptions> options;
+  final void Function(String? value) onChanged;
   const DropdownMenuWidget(
-      {super.key, required this.label, required this.options});
+      {super.key,
+      required this.label,
+      required this.options,
+      required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +49,7 @@ class DropdownMenuWidget extends StatelessWidget {
                   contentPadding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                 ),
-                onChanged: (String? value) {
-                  print(value);
-                })),
+                onChanged: onChanged)),
       ),
     );
   }
