@@ -28,18 +28,19 @@ class TextInputWidget extends StatefulWidget {
 }
 
 class _TextInputWidgetState extends State<TextInputWidget> {
+  bool hiddenPassword = false;
+
+  @override
+  void initState() {
+    setState(() {
+      hiddenPassword = widget.label == 'Senha' ? true : false;
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    bool hiddenPassword = false;
-
-    @override
-    void initState() {
-      hiddenPassword = false;
-      super.initState();
-    }
-
     void togglePasswordView() {
-      print(hiddenPassword);
       setState(() {
         hiddenPassword = !hiddenPassword;
       });
