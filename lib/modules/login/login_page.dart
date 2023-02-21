@@ -1,41 +1,26 @@
 import 'package:animated_card/animated_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/modules/login/login_controller.dart';
-import 'package:mobile/shared/models/Clinic/clinic_list.dart';
-import 'package:mobile/shared/models/Clinic/clinic_options.dart';
-import 'package:mobile/shared/widgets/dropdown_menu/dropdown_menu.dart';
+import 'package:mobile/providers/auth/auth_provider.dart';
+import 'package:mobile/shared/models/User/user_model.dart';
 import 'package:mobile/shared/widgets/label_button/label_button.dart';
 import 'package:mobile/shared/widgets/text_input/text_input.dart';
 
-class LoginPage extends StatefulWidget {
+import '../../shared/models/Clinic/clinic_list.dart';
+import '../../shared/models/Clinic/clinic_options.dart';
+import '../../shared/widgets/dropdown_menu/dropdown_menu.dart';
+
+class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  ConsumerState<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends ConsumerState<LoginPage> {
   final controller = LoginController();
   bool loading = false;
-
-  Future<void> handleSignIn() async {
-    try {
-      setState(() {
-        loading = true;
-      });
-      await controller.signIn().then((value) => {
-            print(value)
-            // Navigator.of(context)
-            //     .pushReplacementNamed("/login", arguments: value.content),
-          });
-    } catch (e) {
-      print(e);
-    } finally {
-      setState(() {
-        loading = false;
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +32,31 @@ class _LoginPageState extends State<LoginPage> {
         return ClinicOptions(name: e.name, value: e.code);
       })
     ];
+
+    Future<void> handleSignIn() async {
+      try {
+        setState(() {
+          loading = true;
+        });
+
+        ref
+            .read(Auth.provider.notifier)
+            .setUser(UserModel("userName", "name", 1000, "email", 60));
+        Navigator.of(context).pushReplacementNamed("/home");
+        // await controller.signIn().then((value) => {
+        //       print(value),
+
+        //       // Navigator.of(context)
+        //       //     .pushReplacementNamed("/login", arguments: value.content),
+        //     });
+      } catch (e) {
+        print(e);
+      } finally {
+        setState(() {
+          loading = false;
+        });
+      }
+    }
 
     return Scaffold(
         body: SafeArea(
