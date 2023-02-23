@@ -26,4 +26,22 @@ class ClinicListModel {
   @override
   String toString() =>
       'ClinicListModel(items: $items, totalItems: $totalItems)';
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'items': items.map((x) => x.toMap()).toList(),
+      'totalItems': totalItems,
+    };
+  }
+
+  factory ClinicListModel.fromMap(Map<String, dynamic> map) {
+    return ClinicListModel(
+      items: List<ClinicModel>.from(
+        (map['items'] as List<int>).map<ClinicModel>(
+          (x) => ClinicModel.fromMap(x as Map<String, dynamic>),
+        ),
+      ),
+      totalItems: map['totalItems'] as int,
+    );
+  }
 }

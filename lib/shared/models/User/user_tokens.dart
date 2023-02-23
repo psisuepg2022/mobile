@@ -5,7 +5,7 @@ class UserTokensModel {
   final String accessToken;
   final String refreshToken;
 
-  UserTokensModel(this.accessToken, this.refreshToken);
+  UserTokensModel({required this.accessToken, required this.refreshToken});
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -14,15 +14,18 @@ class UserTokensModel {
     };
   }
 
-  factory UserTokensModel.fromMap(Map<String, dynamic> map) {
-    return UserTokensModel(
-      map['accessToken'] as String,
-      map['refreshToken'] as String,
-    );
-  }
+  factory UserTokensModel.fromMap(Map<String, dynamic> map) => UserTokensModel(
+        accessToken: map['accessToken'] as String,
+        refreshToken: map['refreshToken'] as String,
+      );
 
   String toJson() => json.encode(toMap());
 
-  factory UserTokensModel.fromJson(String source) =>
-      UserTokensModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserTokensModel.fromJson(Map<String, dynamic> json) =>
+      UserTokensModel(
+          accessToken: json['accessToken'], refreshToken: json['refreshToken']);
+
+  @override
+  String toString() =>
+      'UserTokensModel(accessToken: $accessToken, refreshToken: $refreshToken)';
 }

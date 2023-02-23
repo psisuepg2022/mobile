@@ -33,6 +33,13 @@ class LoginResponseModel {
 
   String toJson() => json.encode(toMap());
 
-  factory LoginResponseModel.fromJson(String source) =>
-      LoginResponseModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory LoginResponseModel.fromJson(Map<String, dynamic> json) =>
+      LoginResponseModel(
+          content: UserTokensModel.fromJson(json['content']),
+          message: json['message'],
+          success: json['success']);
+
+  @override
+  String toString() =>
+      'LoginResponseModel(message: $message, success: $success, content: $content)';
 }

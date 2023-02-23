@@ -16,4 +16,18 @@ class ClinicModel {
 
   @override
   String toString() => '{ code: $code, name: $name }';
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'code': code,
+      'name': name,
+    };
+  }
+
+  factory ClinicModel.fromMap(Map<String, dynamic> map) {
+    return ClinicModel(
+      code: map['code'] as int,
+      name: map['name'] as String,
+    );
+  }
 }
