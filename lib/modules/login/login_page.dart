@@ -7,6 +7,7 @@ import 'package:mobile/modules/login/login_controller.dart';
 import 'package:mobile/providers/auth/auth_provider.dart';
 import 'package:mobile/shared/models/Error/error_response_model.dart';
 import 'package:mobile/shared/models/User/user_model.dart';
+import 'package:mobile/shared/themes/app_colors.dart';
 import 'package:mobile/shared/widgets/label_button/label_button.dart';
 import 'package:mobile/shared/widgets/snackbar/snackbar_widget.dart';
 import 'package:mobile/shared/widgets/text_input/text_input.dart';
@@ -37,7 +38,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       })
     ];
 
-    Future<void> handleSignIn() async {
+    Future<void> handleSignIn(BuildContext context) async {
       try {
         setState(() {
           loading = true;
@@ -51,6 +52,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
         ref.read(authProvider).setUser(
             userData, res.content.refreshToken, res.content.accessToken);
+
+        if (!mounted) return;
         Navigator.of(context)
             .pushReplacementNamed("/home", arguments: res.content);
       } catch (e) {
@@ -77,9 +80,20 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(
-              'assets/images/PSIS-Logo-Invertido-Transparente.png',
-              height: 100,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Image.asset(
+                'assets/images/PSIS-Logo-Invertido-Transparente.png',
+                height: 100,
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: Text(
+                "Acompanhe suas consultas no aplicativo para clínicos",
+                style: TextStyle(color: AppColors.primary, fontSize: 24),
+                textAlign: TextAlign.center,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -115,7 +129,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         label: 'ENTRAR',
                         onLoading: loading,
                         onPressed: () {
-                          handleSignIn();
+                          handleSignIn(context);
                         },
                       ))
                 ],
