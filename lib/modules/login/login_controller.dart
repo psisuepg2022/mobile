@@ -20,6 +20,9 @@ class LoginController {
 
     final response = await dio.post('auth', data: formData);
     LoginResponseModel data = LoginResponseModel.fromJson(response.data);
+
+    dio.options.headers["authorization"] = "bearer ${data.content.accessToken}";
+
     return data;
   }
 }

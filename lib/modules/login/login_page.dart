@@ -51,7 +51,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         Navigator.of(context)
             .pushReplacementNamed("/home", arguments: res.content);
       } catch (e) {
-        print(e);
+        print("ERRO AQUI EM PEGUEI");
       } finally {
         setState(() {
           loading = false;

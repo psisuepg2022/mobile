@@ -1,23 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/modules/splash/splash_controller.dart';
+import 'package:mobile/providers/auth/auth_provider.dart';
 import 'package:mobile/shared/models/Clinic/clinic_list.dart';
 import 'package:mobile/shared/themes/app_colors.dart';
 import 'package:mobile/shared/themes/app_text_styles.dart';
 
-class SplashPage extends StatefulWidget {
+class SplashPage extends ConsumerStatefulWidget {
   const SplashPage({super.key});
 
   @override
-  State<SplashPage> createState() => _SplashPageState();
+  ConsumerState<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage> {
+class _SplashPageState extends ConsumerState<SplashPage> {
   final splashController = SplashController();
   ClinicListModel clinics = ClinicListModel(items: [], totalItems: 0);
   bool loading = true;
 
   Future<void> getClinics() async {
     try {
+      final hasUser = await ref.read(authProvider).getUserData();
+
+      if (hasUser) {
+        Navigator.of(context).pushReplacementNamed("/home");
+        return;
+      }
+
       final value = await splashController.fetchClinics();
       setState(() {
         clinics = value.content;

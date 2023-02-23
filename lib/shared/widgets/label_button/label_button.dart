@@ -24,7 +24,7 @@ class LabelButtonWidget extends StatelessWidget {
         color: AppColors.primary,
       ),
       width: double.maxFinite,
-      child: onLoading!
+      child: onLoading == true
           ? Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [

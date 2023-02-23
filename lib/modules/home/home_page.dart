@@ -14,8 +14,6 @@ class HomePage extends ConsumerStatefulWidget {
 class _HomePageState extends ConsumerState<HomePage> {
   @override
   void initState() {
-    print("AQUI ${ref.read(authProvider).user}");
-
     super.initState();
   }
 
@@ -27,6 +25,11 @@ class _HomePageState extends ConsumerState<HomePage> {
           title: Text(ref.read(authProvider).user?.name ?? '',
               style: TextStyles.welcome),
           backgroundColor: AppColors.primary,
+          actions: [
+            TextButton(
+                child: const Text("sair"),
+                onPressed: () => ref.watch(authProvider).clearUser())
+          ],
         ),
       ),
     );
