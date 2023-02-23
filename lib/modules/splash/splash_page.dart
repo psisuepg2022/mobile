@@ -18,13 +18,12 @@ class _SplashPageState extends State<SplashPage> {
 
   Future<void> getClinics() async {
     try {
-      await splashController.fetchClinics().then((value) => {
-            setState(() {
-              clinics = value.content;
-            }),
-            Navigator.of(context)
-                .pushReplacementNamed("/login", arguments: value.content),
-          });
+      final value = await splashController.fetchClinics();
+      setState(() {
+        clinics = value.content;
+      });
+      Navigator.of(context)
+          .pushReplacementNamed("/login", arguments: value.content);
     } catch (e) {
       print(e);
     } finally {

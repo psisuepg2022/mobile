@@ -1,30 +1,40 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mobile/shared/models/User/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-final sharedPrefs = FutureProvider<SharedPreferences>(
-    (_) async => await SharedPreferences.getInstance());
+import '../../shared/models/User/user_model.dart';
 
-class Auth extends StateNotifier<String> {
-  Auth(this.pref) : super(pref?.getString("PSIS:UserData") ?? "");
+final authProvider = ChangeNotifierProvider((ref) {
+  return Auth();
+});
 
-  static final provider = StateNotifierProvider<Auth, String>((ref) {
-    final pref = ref.watch(sharedPrefs).maybeWhen(
-          data: (value) => value,
-          orElse: () => null,
-        );
-    print(pref.toString());
-    return Auth(pref);
-  });
+class Auth extends ChangeNotifier {
+  UserModel? user;
 
-  final SharedPreferences? pref;
+  // void getUserData() async {
+  //   final pref = await SharedPreferences.getInstance();
+  //   String userData = pref.getString("PSIS:userData") ?? "";
 
-  void setUser(UserModel? newUser) {
+  //   Map<String, dynamic> userMap = jsonDecode(userData) as Map<String, dynamic>;
+  //   user = UserModel.fromMap(userMap);
+  //   print('USERDATA $userMap');
+  // }
+
+  void setUser(
+      UserModel? newUser, String refreshToken, String accessToken) async {
     if (newUser != null) {
-      state = newUser.toString();
-      pref!.setString("PSIS:UserData", newUser.toString());
+      final pref = await SharedPreferences.getInstance();
+      print("AQUI DENTRO $pref");
+
+      pref.setString("PSIS:userData", newUser.toString());
+      pref.setString("PSIS:refreshToken", refreshToken);
+      pref.setString("PSIS:accessToken", accessToken);
+
+      user = newUser;
+
+      notifyListeners();
     }
-    // Throw here since for some reason SharedPreferences could not be retrieved
-    pref!.setString("PSIS:UserData", state);
   }
 }

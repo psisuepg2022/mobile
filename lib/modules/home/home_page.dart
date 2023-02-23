@@ -14,7 +14,8 @@ class HomePage extends ConsumerStatefulWidget {
 class _HomePageState extends ConsumerState<HomePage> {
   @override
   void initState() {
-    print("AQUI${ref.read(Auth.provider).toString()}");
+    print("AQUI ${ref.read(authProvider).user}");
+
     super.initState();
   }
 
@@ -23,7 +24,8 @@ class _HomePageState extends ConsumerState<HomePage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text(ref.watch(Auth.provider), style: TextStyles.welcome),
+          title: Text(ref.read(authProvider).user?.name ?? '',
+              style: TextStyles.welcome),
           backgroundColor: AppColors.primary,
         ),
       ),

@@ -19,7 +19,6 @@ class LoginController {
     };
 
     final response = await dio.post('auth', data: formData);
-    print(response.data);
     LoginResponseModel data = LoginResponseModel.fromJson(response.data);
     return data;
   }
