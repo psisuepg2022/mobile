@@ -8,6 +8,11 @@ class TextStyles {
     fontWeight: FontWeight.w200,
     color: Colors.white,
   );
+  static final subtitleLogin = GoogleFonts.poppins(
+    fontSize: 22,
+    fontWeight: FontWeight.w400,
+    color: AppColors.primary,
+  );
   static final welcome = GoogleFonts.poppins(
     fontSize: 18,
     fontWeight: FontWeight.w400,

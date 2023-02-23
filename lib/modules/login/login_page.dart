@@ -9,6 +9,7 @@ import 'package:mobile/service/index.dart';
 import 'package:mobile/shared/models/Error/error_response_model.dart';
 import 'package:mobile/shared/models/User/user_model.dart';
 import 'package:mobile/shared/themes/app_colors.dart';
+import 'package:mobile/shared/themes/app_text_styles.dart';
 import 'package:mobile/shared/widgets/label_button/label_button.dart';
 import 'package:mobile/shared/widgets/snackbar/snackbar_widget.dart';
 import 'package:mobile/shared/widgets/text_input/text_input.dart';
@@ -100,11 +101,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     height: 100,
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: Text(
                     "Acompanhe suas consultas no aplicativo para profissionais da clínica",
-                    style: TextStyle(color: AppColors.primary, fontSize: 22),
+                    style: TextStyles.subtitleLogin,
                     textAlign: TextAlign.center,
                   ),
                 ),
