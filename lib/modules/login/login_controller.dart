@@ -23,8 +23,6 @@ class LoginController {
         data: formData, options: Options(followRedirects: true));
     LoginResponseModel data = LoginResponseModel.fromJson(response.data);
 
-    dio.options.headers["authorization"] = "bearer ${data.content.accessToken}";
-
     return data;
   }
 }

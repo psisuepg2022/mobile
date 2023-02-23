@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:mobile/modules/login/login_controller.dart';
 import 'package:mobile/providers/auth/auth_provider.dart';
+import 'package:mobile/service/index.dart';
 import 'package:mobile/shared/models/Error/error_response_model.dart';
 import 'package:mobile/shared/models/User/user_model.dart';
 import 'package:mobile/shared/themes/app_colors.dart';
@@ -50,6 +51,16 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
         UserModel userData = UserModel.fromMap(decodedAccessToken);
 
+        if (!userData.permissions.contains('USER_TYPE_PROFESSIONAL')) {
+          if (!mounted) return;
+          GlobalSnackBar.show(context,
+              "É preciso entrar com uma conta de profissional da clínica.");
+          return;
+        }
+
+        dio.options.headers["authorization"] =
+            "bearer ${res.content.accessToken}";
+
         ref.read(authProvider).setUser(
             userData, res.content.refreshToken, res.content.accessToken);
 
@@ -76,66 +87,70 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
     return Scaffold(
         body: SafeArea(
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: Image.asset(
-                'assets/images/PSIS-Logo-Invertido-Transparente.png',
-                height: 100,
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Text(
-                "Acompanhe suas consultas no aplicativo para clínicos",
-                style: TextStyle(color: AppColors.primary, fontSize: 24),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 20,
+      child: Center(
+        child: SingleChildScrollView(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: Image.asset(
+                    'assets/images/PSIS-Logo-Invertido-Transparente.png',
+                    height: 100,
                   ),
-                  DropdownMenuWidget(
-                    label: 'Clínica',
-                    options: clinicOptions,
-                    onChanged: (value) {
-                      controller.onChange(accessCode: "$value");
-                    },
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  child: Text(
+                    "Acompanhe suas consultas no aplicativo para profissionais da clínica",
+                    style: TextStyle(color: AppColors.primary, fontSize: 22),
+                    textAlign: TextAlign.center,
                   ),
-                  TextInputWidget(
-                      label: "Usuário",
-                      onChanged: (value) {
-                        controller.onChange(userName: value);
-                      }),
-                  TextInputWidget(
-                      passwordType: true,
-                      label: "Senha",
-                      onChanged: (value) {
-                        controller.onChange(password: value);
-                      }),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  AnimatedCard(
-                      direction: AnimatedCardDirection.left,
-                      child: LabelButtonWidget(
-                        label: 'ENTRAR',
-                        onLoading: loading,
-                        onPressed: () {
-                          handleSignIn(context);
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      DropdownMenuWidget(
+                        label: 'Clínica',
+                        options: clinicOptions,
+                        onChanged: (value) {
+                          controller.onChange(accessCode: "$value");
                         },
-                      ))
-                ],
-              ),
-            )
-          ]),
+                      ),
+                      TextInputWidget(
+                          label: "Usuário",
+                          onChanged: (value) {
+                            controller.onChange(userName: value);
+                          }),
+                      TextInputWidget(
+                          passwordType: true,
+                          label: "Senha",
+                          onChanged: (value) {
+                            controller.onChange(password: value);
+                          }),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      AnimatedCard(
+                          direction: AnimatedCardDirection.left,
+                          child: LabelButtonWidget(
+                            label: 'ENTRAR',
+                            onLoading: loading,
+                            onPressed: () {
+                              handleSignIn(context);
+                            },
+                          ))
+                    ],
+                  ),
+                )
+              ]),
+        ),
+      ),
     ));
   }
 }
