@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:mobile/shared/models/User/login_response.dart';
 import 'package:mobile/shared/models/User/user_request.dart';
 
@@ -18,7 +19,8 @@ class LoginController {
       'password': model.password
     };
 
-    final response = await dio.post('auth', data: formData);
+    final response = await dio.post('auth',
+        data: formData, options: Options(followRedirects: true));
     LoginResponseModel data = LoginResponseModel.fromJson(response.data);
 
     dio.options.headers["authorization"] = "bearer ${data.content.accessToken}";

@@ -1,11 +1,14 @@
 import 'package:animated_card/animated_card.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:mobile/modules/login/login_controller.dart';
 import 'package:mobile/providers/auth/auth_provider.dart';
+import 'package:mobile/shared/models/Error/error_response_model.dart';
 import 'package:mobile/shared/models/User/user_model.dart';
 import 'package:mobile/shared/widgets/label_button/label_button.dart';
+import 'package:mobile/shared/widgets/snackbar/snackbar_widget.dart';
 import 'package:mobile/shared/widgets/text_input/text_input.dart';
 
 import '../../shared/models/Clinic/clinic_list.dart';
@@ -51,7 +54,16 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         Navigator.of(context)
             .pushReplacementNamed("/home", arguments: res.content);
       } catch (e) {
-        print("ERRO AQUI EM PEGUEI");
+        if (e is DioError) {
+          ErrorResponseModel response =
+              ErrorResponseModel.fromJson(e.response?.data);
+
+          GlobalSnackBar.show(
+              context,
+              response.message != ""
+                  ? response.message
+                  : "Ocorreu um erro ao entrar. Tente novamente.");
+        }
       } finally {
         setState(() {
           loading = false;
