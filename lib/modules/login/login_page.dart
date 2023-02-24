@@ -8,7 +8,6 @@ import 'package:mobile/providers/auth/auth_provider.dart';
 import 'package:mobile/service/index.dart';
 import 'package:mobile/shared/models/Error/error_response_model.dart';
 import 'package:mobile/shared/models/User/user_model.dart';
-import 'package:mobile/shared/themes/app_colors.dart';
 import 'package:mobile/shared/themes/app_text_styles.dart';
 import 'package:mobile/shared/widgets/label_button/label_button.dart';
 import 'package:mobile/shared/widgets/snackbar/snackbar_widget.dart';
