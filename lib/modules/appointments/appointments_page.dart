@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/shared/widgets/calendar/calendar_widget.dart';
 
 class AppointmentsPage extends StatefulWidget {
   const AppointmentsPage({super.key});
@@ -10,8 +11,6 @@ class AppointmentsPage extends StatefulWidget {
 class _AppointmentsPageState extends State<AppointmentsPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Text("APPOINTMENTS"),
-    );
+    return Container(child: const CalendarWidget());
   }
 }
