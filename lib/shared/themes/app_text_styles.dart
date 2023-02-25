@@ -30,4 +30,6 @@ class TextStyles {
   );
   static final whiteLabel = GoogleFonts.poppins(
       fontSize: 15, fontWeight: FontWeight.w400, color: Colors.white);
+  static final primaryLabel = GoogleFonts.poppins(
+      fontSize: 15, fontWeight: FontWeight.w400, color: AppColors.primary);
 }

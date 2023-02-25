@@ -31,11 +31,6 @@ class _HomePageState extends ConsumerState<HomePage> {
           title: Text("Bem-vindo, ${ref.read(authProvider).user?.name ?? ''}",
               style: TextStyles.welcome),
           backgroundColor: AppColors.primary,
-          actions: [
-            TextButton(
-                child: const Text("sair"),
-                onPressed: () => ref.watch(authProvider).clearUser())
-          ],
         ),
         body: [
           AppointmentsPage(key: UniqueKey()),

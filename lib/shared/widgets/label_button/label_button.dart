@@ -7,13 +7,15 @@ class LabelButtonWidget extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
   final bool? onLoading;
+  final bool? reversed;
   final TextStyle? style;
   const LabelButtonWidget(
       {super.key,
       required this.label,
       required this.onPressed,
       this.style,
-      this.onLoading});
+      this.onLoading,
+      this.reversed});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,12 @@ class LabelButtonWidget extends StatelessWidget {
       height: 50,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(3),
-        color: AppColors.primary,
+        border: reversed != null && reversed == true
+            ? Border.all(color: AppColors.primary)
+            : null,
+        color: reversed != null && reversed == true
+            ? Colors.white
+            : AppColors.primary,
       ),
       width: double.maxFinite,
       child: onLoading == true
