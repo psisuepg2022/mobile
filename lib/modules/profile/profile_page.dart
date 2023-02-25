@@ -20,15 +20,18 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Text("profile"),
-        LabelButtonWidget(
-            label: "SAIR",
-            reversed: true,
-            style: TextStyles.primaryLabel,
-            onPressed: handleSignOut)
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        children: [
+          const Text("profile"),
+          LabelButtonWidget(
+              label: "SAIR",
+              reversed: true,
+              style: TextStyles.primaryLabel,
+              onPressed: handleSignOut),
+        ],
+      ),
     );
   }
 }

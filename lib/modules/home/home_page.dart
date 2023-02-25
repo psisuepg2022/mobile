@@ -38,8 +38,11 @@ class _HomePageState extends ConsumerState<HomePage> {
           ProfilePage(key: UniqueKey())
         ][homeController.currentPage],
         bottomNavigationBar: Container(
-            color: AppColors.backgrey,
             height: 60,
+            decoration: const BoxDecoration(
+                color: AppColors.backgrey,
+                border: Border(
+                    top: BorderSide(width: 1, color: AppColors.primary))),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
