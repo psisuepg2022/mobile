@@ -1,24 +1,33 @@
-import 'package:mobile/shared/models/Schedule/schedule_lock.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:mobile/shared/models/Schedule/weekly_schedule_lock.dart';
 
 class WeeklySchedule {
-  final String id;
-  final String startTime;
-  final String endTime;
-  final String dayOfTheWeek;
-  final List<ScheduleLock>? locks;
+  final String? id;
+  final String? startTime;
+  final String? endTime;
+  final int dayOfTheWeek;
+  final List<WeeklyScheduleLock>? locks;
 
   WeeklySchedule(
-      {required this.id,
-      required this.startTime,
-      required this.endTime,
+      {this.id,
+      this.startTime,
+      this.endTime,
       required this.dayOfTheWeek,
       this.locks});
 
   factory WeeklySchedule.fromJson(Map<String, dynamic> json) => WeeklySchedule(
-        id: json['id'],
-        startTime: json['startTime'],
-        endTime: json['endTime'],
-        dayOfTheWeek: json['dayOfTheWeek'],
-        locks: json['locks'],
-      );
+      id: json['id'],
+      startTime: json['startTime'],
+      endTime: json['endTime'],
+      dayOfTheWeek: json['dayOfTheWeek'],
+      locks: json['locks'] != null
+          ? List<dynamic>.from(json['locks'])
+              .map((item) => WeeklyScheduleLock.fromJson(item))
+              .toList()
+          : []);
+
+  @override
+  String toString() {
+    return '{ id: $id, startTime: $startTime, endTime: $endTime, dayOfTheWeek: $dayOfTheWeek, locks: $locks }';
+  }
 }
