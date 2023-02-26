@@ -58,6 +58,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           return;
         }
 
+        print(res.content.accessToken);
         dio.options.headers["authorization"] =
             "bearer ${res.content.accessToken}";
 
