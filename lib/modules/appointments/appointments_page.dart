@@ -39,6 +39,7 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
             //         ? response.message
             //         : "Ocorreu um erro ao entrar. Tente novamente.");
           }
+          print(e);
         }
       },
     ));
