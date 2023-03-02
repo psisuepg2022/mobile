@@ -15,19 +15,27 @@ class WeeklySchedule {
       required this.dayOfTheWeek,
       this.locks});
 
-  factory WeeklySchedule.fromJson(Map<String, dynamic> json) => WeeklySchedule(
-      id: json['id'],
-      startTime: json['startTime'],
-      endTime: json['endTime'],
-      dayOfTheWeek: json['dayOfTheWeek'],
-      locks: json['locks'] != null
-          ? List<dynamic>.from(json['locks'])
-              .map((item) => WeeklyScheduleLock.fromJson(item))
-              .toList()
-          : []);
+  factory WeeklySchedule.fromJson(Map<String, dynamic> json) {
+    if (json['id'] == null) {
+      return WeeklySchedule(dayOfTheWeek: json['dayOfTheWeek']);
+    }
+    return WeeklySchedule(
+        id: json['id'],
+        startTime: json['startTime'],
+        endTime: json['endTime'],
+        dayOfTheWeek: json['dayOfTheWeek'],
+        locks: json['locks'] != null
+            ? List<dynamic>.from(json['locks'])
+                .map((item) => WeeklyScheduleLock.fromJson(item))
+                .toList()
+            : []);
+  }
 
   @override
   String toString() {
+    if (id == null) {
+      return '{ dayOfTheWeek: $dayOfTheWeek }';
+    }
     return '{ id: $id, startTime: $startTime, endTime: $endTime, dayOfTheWeek: $dayOfTheWeek, locks: $locks }';
   }
 }
