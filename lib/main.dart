@@ -5,10 +5,12 @@ import 'package:mobile/modules/home/home_page.dart';
 import 'package:mobile/modules/login/login_page.dart';
 import 'package:mobile/shared/themes/app_colors.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:timezone/data/latest.dart' as tz;
 
 import 'modules/splash/splash_page.dart';
 
 void main() {
+  tz.initializeTimeZones();
   initializeDateFormatting()
       .then((_) => runApp(const ProviderScope(child: MyApp())));
 }

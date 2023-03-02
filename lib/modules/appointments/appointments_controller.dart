@@ -14,7 +14,6 @@ class AppointmentsController {
     final response = await dio.post('appointment/calendar?weekly=true',
         data: formData, options: Options(followRedirects: true));
     ScheduleResponseModel data = ScheduleResponseModel.fromJson(response.data);
-    print("DATA $data");
     return data;
   }
 }
