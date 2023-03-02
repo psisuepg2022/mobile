@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/modules/splash/splash_controller.dart';
 import 'package:mobile/providers/auth/auth_provider.dart';
+import 'package:mobile/service/index.dart';
 import 'package:mobile/shared/models/Clinic/clinic_list.dart';
 import 'package:mobile/shared/themes/app_colors.dart';
 import 'package:mobile/shared/themes/app_text_styles.dart';
@@ -23,6 +26,9 @@ class _SplashPageState extends ConsumerState<SplashPage> {
       final hasUser = await ref.read(authProvider).getUserData();
 
       if (hasUser) {
+        final accessToken = ref.read(authProvider).accessToken;
+        dio.options.headers[HttpHeaders.authorizationHeader] =
+            "bearer $accessToken";
         Navigator.of(context).pushReplacementNamed("/home");
         return;
       }

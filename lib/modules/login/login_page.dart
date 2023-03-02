@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:animated_card/animated_card.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -58,8 +60,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           return;
         }
 
-        print(res.content.accessToken);
-        dio.options.headers["authorization"] =
+        dio.options.headers[HttpHeaders.authorizationHeader] =
             "bearer ${res.content.accessToken}";
 
         ref.read(authProvider).setUser(

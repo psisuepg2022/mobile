@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:mobile/modules/appointments/appointments_controller.dart';
 import 'package:mobile/shared/widgets/calendar/calendar_widget.dart';
 
-import '../../service/index.dart';
 import '../../shared/models/Error/error_response_model.dart';
 
 class AppointmentsPage extends StatefulWidget {
@@ -20,7 +19,6 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
   Widget build(BuildContext context) {
     return Container(child: CalendarWidget(
       onCalendarCreated: () async {
-        print(dio.options.headers["authorization"]);
         try {
           final res = await appointmentsController.getCalendar(
               DateTime(2022, 11, 30), DateTime(2022, 12, 30));
