@@ -11,7 +11,7 @@ import 'modules/splash/splash_page.dart';
 
 void main() {
   tz.initializeTimeZones();
-  initializeDateFormatting()
+  initializeDateFormatting('pt_BR', null)
       .then((_) => runApp(const ProviderScope(child: MyApp())));
 }
 
