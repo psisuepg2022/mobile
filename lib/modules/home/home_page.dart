@@ -30,7 +30,15 @@ class _HomePageState extends ConsumerState<HomePage> {
         appBar: AppBar(
           title: Text("Bem-vindo, ${ref.read(authProvider).user?.name ?? ''}",
               style: TextStyles.welcome),
-          backgroundColor: AppColors.primary,
+          flexibleSpace: Container(
+              decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: <Color>[
+                AppColors.primary,
+                AppColors.secondary
+              ]))),
         ),
         body: [
           AppointmentsPage(key: UniqueKey()),

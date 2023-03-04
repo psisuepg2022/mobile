@@ -1,18 +1,13 @@
-import 'package:mobile/shared/utils/tz_date_time.dart';
+List<DateTime> daysInMonth(DateTime date) {
+  final int daysQnt = DateTime(date.year, date.month + 1, 0).day;
 
-List<DateTime> dateRange() {
-  final currentDate = convertTz(DateTime.now());
-
-  final beforeDate = currentDate.subtract(const Duration(days: 7));
-  final afterDate = currentDate.add(const Duration(days: 7));
-
-  return [beforeDate, afterDate];
+  return [
+    DateTime(date.year, date.month, 1),
+    DateTime(date.year, date.month, daysQnt)
+  ];
 }
 
-List<DateTime> daysInRange(DateTime first, DateTime last) {
-  final dayCount = last.difference(first).inDays + 1;
-  return List.generate(
-    dayCount,
-    (index) => DateTime.utc(first.year, first.month, first.day + index),
-  );
-}
+DateTime stringToDateTime(String date) => DateTime(
+    int.parse(date.split('T')[0].split('-')[0]),
+    int.parse(date.split('T')[0].split('-')[1]),
+    int.parse(date.split('T')[0].split('-')[2]));
