@@ -4,6 +4,7 @@ import 'package:mobile/shared/models/Schedule/schedule_event.dart';
 import 'package:mobile/shared/themes/app_colors.dart';
 import 'package:mobile/shared/themes/app_text_styles.dart';
 import 'package:mobile/shared/utils/date_range.dart';
+import 'package:mobile/shared/widgets/appointment_card/appointment_card.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class AppointmentsPage extends StatefulWidget {
@@ -66,13 +67,6 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
     }
   }
 
-  String getAppointmentHours(String startDate, String endDate) {
-    final startHour = startDate.split('T')[1].split('.')[0].substring(0, 5);
-    final endHour = endDate.split('T')[1].split('.')[0].substring(0, 5);
-
-    return '$startHour - $endHour';
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(children: [
@@ -128,6 +122,7 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
           return dayEvents;
         }),
         onPageChanged: (focusedDay) {
+          dayEvents.value = [];
           getMonthEvents(focusedDay);
           _focusedDay = focusedDay;
         },
@@ -139,20 +134,8 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
           return ListView.builder(
             itemCount: value.length,
             itemBuilder: (context, index) {
-              return Container(
-                margin: const EdgeInsets.symmetric(
-                  horizontal: 12.0,
-                  vertical: 4.0,
-                ),
-                decoration: BoxDecoration(
-                  border: Border.all(),
-                  borderRadius: BorderRadius.circular(12.0),
-                ),
-                child: ListTile(
-                  onTap: () => print('${value[index]}'),
-                  title: Text(
-                      '${value[index].title} | ${getAppointmentHours(value[index].startDate, value[index].endDate)}'),
-                ),
+              return AppointmentCardWidget(
+                event: value[index],
               );
             },
           );

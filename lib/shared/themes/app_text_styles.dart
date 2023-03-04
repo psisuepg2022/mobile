@@ -35,4 +35,9 @@ class TextStyles {
       fontSize: 15, fontWeight: FontWeight.w400, color: AppColors.primary);
   static final eventCounter = GoogleFonts.poppins(
       fontSize: 12, fontWeight: FontWeight.w400, color: Colors.white);
+  static final eventCardTitle = GoogleFonts.poppins(
+    fontSize: 15,
+    fontWeight: FontWeight.w600,
+    color: AppColors.text,
+  );
 }
