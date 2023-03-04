@@ -14,6 +14,7 @@ class AppointmentsController {
     final response = await dio.post('appointment/calendar',
         data: formData, options: Options(followRedirects: true));
     ScheduleResponseModel data = ScheduleResponseModel.fromJson(response.data);
+
     return data;
   }
 }
