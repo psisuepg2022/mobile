@@ -40,4 +40,34 @@ class TextStyles {
     fontWeight: FontWeight.w600,
     color: AppColors.text,
   );
+  static final eventModalStatus = GoogleFonts.poppins(
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    color: AppColors.primary,
+  );
+  static final eventModalStatusDefault = GoogleFonts.poppins(
+    fontSize: 18,
+    fontWeight: FontWeight.w400,
+    color: AppColors.text,
+  );
+  static final eventModalPatientName = GoogleFonts.poppins(
+    fontSize: 22,
+    fontWeight: FontWeight.w600,
+    color: AppColors.text,
+  );
+  static final eventModalContactDefault = GoogleFonts.poppins(
+    fontSize: 18,
+    fontWeight: FontWeight.w400,
+    color: AppColors.text,
+  );
+  static final eventModalContactNumber = GoogleFonts.poppins(
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+    color: AppColors.text,
+  );
+  static final eventModalHours = GoogleFonts.poppins(
+    fontSize: 22,
+    fontWeight: FontWeight.w600,
+    color: AppColors.text,
+  );
 }
