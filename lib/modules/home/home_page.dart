@@ -75,7 +75,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                       setState(() {});
                     },
                     icon: Icon(
-                      Icons.people,
+                      Icons.personal_injury,
                       color: homeController.currentPage == 1
                           ? AppColors.primary
                           : AppColors.text,
