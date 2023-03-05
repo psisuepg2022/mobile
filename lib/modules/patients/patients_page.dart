@@ -84,6 +84,7 @@ class _PatientsPageState extends ConsumerState<PatientsPage> {
   @override
   void dispose() {
     _debounce?.cancel();
+    patients.dispose();
     super.dispose();
   }
 

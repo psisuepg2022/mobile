@@ -36,6 +36,8 @@ class _AppointmentsPageState extends ConsumerState<AppointmentsPage> {
 
   @override
   void dispose() {
+    events.dispose();
+    dayEvents.dispose();
     super.dispose();
   }
 
