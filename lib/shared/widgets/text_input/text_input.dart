@@ -12,6 +12,8 @@ class TextInputWidget extends StatefulWidget {
   final String? Function(String?)? validator;
   final TextEditingController? controller;
   final void Function(String value) onChanged;
+  final bool? loading;
+
   const TextInputWidget(
       {Key? key,
       required this.label,
@@ -20,7 +22,8 @@ class TextInputWidget extends StatefulWidget {
       this.initalValue,
       this.validator,
       this.controller,
-      this.passwordType})
+      this.passwordType,
+      this.loading})
       : super(key: key);
 
   @override
@@ -70,7 +73,19 @@ class _TextInputWidgetState extends State<TextInputWidget> {
                                   ? Icons.visibility_off
                                   : Icons.visibility,
                               color: AppColors.primary))
-                      : null,
+                      : widget.loading != null && widget.loading == true
+                          ? const Padding(
+                              padding: EdgeInsets.only(top: 8),
+                              child: SizedBox(
+                                height: 20,
+                                width: 20,
+                                child: CircularProgressIndicator(
+                                  color: AppColors.primary,
+                                  strokeWidth: 2,
+                                ),
+                              ),
+                            )
+                          : null,
                   focusedBorder: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(2)),
                       borderSide:
