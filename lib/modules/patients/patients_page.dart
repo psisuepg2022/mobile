@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -22,24 +23,36 @@ class PatientsPage extends ConsumerStatefulWidget {
 class _PatientsPageState extends ConsumerState<PatientsPage> {
   final patientsController = PatientsController();
   bool loading = true;
+  bool inputLoading = false;
   ValueNotifier<List<PatientModel>> patients = ValueNotifier([]);
+  Timer? _debounce;
 
-  Future<void> getPatients() async {
+  _onSearchChanged(String query) {
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 1000), () {
+      setState(() {
+        inputLoading = true;
+      });
+      getPatients(query);
+    });
+  }
+
+  Future<void> getPatients(String? composed) async {
     try {
       setState(() {
         loading = true;
       });
       final hasUser = await ref.read(authProvider).getUserData();
-
       if (hasUser) {
         final accessToken = ref.read(authProvider).accessToken;
         dio.options.headers[HttpHeaders.authorizationHeader] =
             "bearer $accessToken";
       }
 
-      final value = await patientsController.getPatients(0, 10, '');
+      final value = await patientsController.getPatients(0, 10, composed);
       setState(() {
         patients.value = value.content.items;
+        inputLoading = false;
       });
     } catch (e) {
       if (e is DioError) {
@@ -65,7 +78,13 @@ class _PatientsPageState extends ConsumerState<PatientsPage> {
   @override
   void initState() {
     super.initState();
-    getPatients();
+    getPatients('');
+  }
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    super.dispose();
   }
 
   @override
@@ -75,8 +94,9 @@ class _PatientsPageState extends ConsumerState<PatientsPage> {
       child: Column(children: [
         TextInputWidget(
             label: "Nome, CPF ou e-mail",
+            loading: inputLoading,
             onChanged: (value) {
-              patientsController.onChange(composed: value);
+              _onSearchChanged(value);
             }),
         Expanded(
             child: ValueListenableBuilder<List<PatientModel>>(
