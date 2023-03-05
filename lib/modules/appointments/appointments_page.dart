@@ -46,7 +46,6 @@ class _AppointmentsPageState extends ConsumerState<AppointmentsPage> {
 
     final res =
         await appointmentsController.getCalendar(monthRange[0], monthRange[1]);
-    await Future.delayed(const Duration(seconds: 2));
     ref.read(homeProvider).setLoading(false);
     setState(() {
       events.value = res.content.appointments;

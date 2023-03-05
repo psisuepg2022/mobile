@@ -29,7 +29,8 @@ class _HomePageState extends ConsumerState<HomePage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Bem-vindo, ${ref.read(authProvider).user?.name ?? ''}",
+          title: Text(
+              "Bem-vindo, ${ref.read(authProvider).user?.name.split(' ')[0] ?? ''}",
               style: TextStyles.welcome),
           flexibleSpace: Container(
               decoration: const BoxDecoration(
