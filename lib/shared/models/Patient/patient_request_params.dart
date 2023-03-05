@@ -9,4 +9,16 @@ class PatientRequestParams {
     required this.size,
     this.composed,
   });
+
+  PatientRequestParams copyWith({
+    int? page,
+    int? size,
+    String? composed,
+  }) {
+    return PatientRequestParams(
+      page: page ?? this.page,
+      size: size ?? this.size,
+      composed: composed ?? this.composed,
+    );
+  }
 }

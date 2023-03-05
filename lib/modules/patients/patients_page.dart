@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile/modules/patients/patients_controller.dart';
@@ -7,6 +8,9 @@ import 'package:mobile/providers/auth/auth_provider.dart';
 import 'package:mobile/shared/models/Patient/patient_model.dart';
 
 import '../../service/index.dart';
+import '../../shared/models/Error/error_response_model.dart';
+import '../../shared/widgets/snackbar/snackbar_widget.dart';
+import '../../shared/widgets/text_input/text_input.dart';
 
 class PatientsPage extends ConsumerStatefulWidget {
   const PatientsPage({super.key});
@@ -18,7 +22,7 @@ class PatientsPage extends ConsumerStatefulWidget {
 class _PatientsPageState extends ConsumerState<PatientsPage> {
   final patientsController = PatientsController();
   bool loading = true;
-  List<PatientModel> patients = [];
+  ValueNotifier<List<PatientModel>> patients = ValueNotifier([]);
 
   Future<void> getPatients() async {
     try {
@@ -34,12 +38,23 @@ class _PatientsPageState extends ConsumerState<PatientsPage> {
       }
 
       final value = await patientsController.getPatients(0, 10, '');
-      print(value.toString());
       setState(() {
-        patients = value.content.items;
+        patients.value = value.content.items;
       });
     } catch (e) {
-      print(e);
+      if (e is DioError) {
+        ErrorResponseModel response =
+            ErrorResponseModel.fromJson(e.response?.data);
+
+        GlobalSnackBar.show(
+            context,
+            response.message != ""
+                ? response.message
+                : "Ocorreu um erro ao recuperar os pacientes.");
+      } else {
+        GlobalSnackBar.show(
+            context, "Ocorreu um erro ao recuperar os pacientes.");
+      }
     } finally {
       setState(() {
         loading = false;
@@ -55,8 +70,27 @@ class _PatientsPageState extends ConsumerState<PatientsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Text("PACIENTES"),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(children: [
+        TextInputWidget(
+            label: "Nome, CPF ou e-mail",
+            onChanged: (value) {
+              patientsController.onChange(composed: value);
+            }),
+        Expanded(
+            child: ValueListenableBuilder<List<PatientModel>>(
+          valueListenable: patients,
+          builder: (context, value, _) {
+            return ListView.builder(
+              itemCount: value.length,
+              itemBuilder: (context, index) {
+                return Text(value[index].name);
+              },
+            );
+          },
+        )),
+      ]),
     );
   }
 }
