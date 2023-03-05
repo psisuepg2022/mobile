@@ -5,6 +5,7 @@ import 'package:mobile/modules/home/home_controller.dart';
 import 'package:mobile/modules/patients/patients_page.dart';
 import 'package:mobile/modules/profile/profile_page.dart';
 import 'package:mobile/providers/auth/auth_provider.dart';
+import 'package:mobile/providers/home/home_provider.dart';
 import 'package:mobile/shared/themes/app_colors.dart';
 import 'package:mobile/shared/themes/app_text_styles.dart';
 
@@ -56,6 +57,7 @@ class _HomePageState extends ConsumerState<HomePage> {
               children: [
                 IconButton(
                     onPressed: () {
+                      if (ref.read(homeProvider).loading) return;
                       homeController.setPage(0);
                       setState(() {});
                     },
@@ -67,6 +69,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                     )),
                 IconButton(
                     onPressed: () {
+                      if (ref.read(homeProvider).loading) return;
                       homeController.setPage(1);
                       setState(() {});
                     },
@@ -78,6 +81,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                     )),
                 IconButton(
                     onPressed: () {
+                      if (ref.read(homeProvider).loading) return;
                       homeController.setPage(2);
                       setState(() {});
                     },

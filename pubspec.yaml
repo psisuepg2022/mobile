@@ -46,6 +46,7 @@ dependencies:
   table_calendar: ^3.0.9
   intl: any
   timezone: any
+  indexed: ^0.0.8
 
 dev_dependencies:
   flutter_test:
