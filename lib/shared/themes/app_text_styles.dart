@@ -70,4 +70,14 @@ class TextStyles {
     fontWeight: FontWeight.w600,
     color: AppColors.text,
   );
+  static final patientCardName = GoogleFonts.poppins(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    color: AppColors.text,
+  );
+  static final patientCardContactNumber = GoogleFonts.poppins(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: AppColors.text,
+  );
 }
