@@ -117,7 +117,7 @@ class _AppointmentsPageState extends ConsumerState<AppointmentsPage> {
                 selectedDecoration: BoxDecoration(
                     color: AppColors.primary, shape: BoxShape.circle),
                 todayDecoration: BoxDecoration(
-                    color: AppColors.lockDarker, shape: BoxShape.circle)),
+                    color: AppColors.lock, shape: BoxShape.circle)),
             calendarBuilders: CalendarBuilders(
               markerBuilder: (context, day, events) => events.isNotEmpty
                   ? Container(

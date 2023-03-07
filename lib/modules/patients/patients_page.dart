@@ -163,8 +163,8 @@ class _PatientsPageState extends ConsumerState<PatientsPage> {
                 return _hasMore
                     ? const Center(
                         child: SizedBox(
-                          height: 40,
-                          width: 40,
+                          height: 30,
+                          width: 30,
                           child: CircularProgressIndicator(
                             color: AppColors.primary,
                           ),
