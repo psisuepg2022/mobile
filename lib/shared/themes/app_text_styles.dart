@@ -80,4 +80,19 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.text,
   );
+  static final personalDataHeader = GoogleFonts.poppins(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    color: AppColors.primary,
+  );
+  static final patientDataSubtitle = GoogleFonts.poppins(
+    fontSize: 12,
+    fontWeight: FontWeight.w600,
+    color: AppColors.text,
+  );
+  static final patientData = GoogleFonts.poppins(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    color: AppColors.text,
+  );
 }
