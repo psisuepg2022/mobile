@@ -95,4 +95,9 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.text,
   );
+  static final profileName = GoogleFonts.poppins(
+    fontSize: 22,
+    fontWeight: FontWeight.w600,
+    color: AppColors.primary,
+  );
 }
