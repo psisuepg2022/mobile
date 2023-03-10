@@ -100,4 +100,19 @@ class TextStyles {
     fontWeight: FontWeight.w600,
     color: AppColors.primary,
   );
+  static final profileTitle = GoogleFonts.poppins(
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+    color: AppColors.primary,
+  );
+  static final profileOcupation = GoogleFonts.poppins(
+    fontSize: 18,
+    fontWeight: FontWeight.w400,
+    color: AppColors.primary,
+  );
+  static final profileOcupationBold = GoogleFonts.poppins(
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    color: AppColors.primary,
+  );
 }

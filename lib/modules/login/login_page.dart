@@ -52,7 +52,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
             JwtDecoder.decode(res.content.accessToken);
 
         UserModel userData = UserModel.fromMap(decodedAccessToken);
-
         if (!userData.permissions.contains('USER_TYPE_PROFESSIONAL')) {
           if (!mounted) return;
           GlobalSnackBar.show(context,
